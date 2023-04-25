@@ -2,6 +2,8 @@ package com.ty.petCart_webapp.dto;
 
 import org.springframework.stereotype.Component;
 
+import com.ty.petCart_webapp.entity.Address;
+
 @Component
 public class UserDto {
 
@@ -10,6 +12,7 @@ public class UserDto {
 		private String lastName;
 		private String email;
 		private long phone;
+		private Address address;
 		public int getId() {
 			return id;
 		}
@@ -36,6 +39,15 @@ public class UserDto {
 		}
 		public long getPhone() {
 			return phone;
+		}
+		public void setPhone(Long phone) {
+			this.phone = phone;
+		}
+		public Address getAddress() {
+			return address;
+		}
+		public void setAddress(Address address) {
+			this.address = address;
 		}
 		public void setPhone(long phone) {
 			this.phone = phone;

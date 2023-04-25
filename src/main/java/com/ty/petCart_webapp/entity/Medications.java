@@ -2,22 +2,29 @@ package com.ty.petCart_webapp.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Medications {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int m_id;
+	@NotNull(message = "drugname should not be null")
+	@NotBlank(message = "drugname should not be blank")
 	private String drug_name;
+	@NotNull(message = "medduration should not be null")
+	@NotBlank(message = "medduration should not be blank")
 	private String med_duration;
+	@NotNull(message = "symptoms should not be null")
+	@NotBlank(message = "symptoms should not be blank")
 	private String symptoms;
-	@ManyToMany
-	private List<Doctors> doctors;
 	public int getM_id() {
 		return m_id;
 	}
@@ -43,11 +50,5 @@ public class Medications {
 		this.symptoms = symptoms;
 	}
 	
-	public List<Doctors> getDoctors() {
-		return doctors;
-	}
-	public void setDoctors(List<Doctors> doctors) {
-		this.doctors = doctors;
-	}
 	
 }

@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -12,21 +11,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import lombok.Data;
-
 @Entity
-@Data
-public class User {
+public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@NotNull(message = "firstname should not be null")
-	@NotBlank(message = "firstname should not be blank")
-	private String firstName;
-	@NotNull(message = "lastname should not be null")
-	@NotBlank(message = "lastname should not be blank")
-	private String lastName;
+	private int customerid;
+	@NotNull(message = "name should not be null")
+	@NotBlank(message = "name should not be blank")
+	private String name;
 	@NotNull(message = "email should not be null")
 	@NotBlank(message = "email should not be blank")
 	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", message = "Invalid Email")
@@ -38,63 +31,47 @@ public class User {
 	@Min(value = 6000000000l)
 	@Max(value = 9999999999l)
 	private long phone;
-	@OneToOne
-	private Address address;
-
-	public Address getAddress() {
-		return address;
+	@NotNull(message = "address should not be null")
+	@NotBlank(message = "address should not be blank")
+	private String address;
+	
+	public int getCustomerid() {
+		return customerid;
 	}
-
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setCustomerid(int customerid) {
+		this.customerid = customerid;
 	}
-
-	public int getId() {
-		return id;
+	public String getName() {
+		return name;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public long getPhone() {
 		return phone;
 	}
-
 	public void setPhone(long phone) {
 		this.phone = phone;
 	}
-
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	
 }

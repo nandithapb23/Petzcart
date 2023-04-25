@@ -1,6 +1,17 @@
 package com.ty.petCart_webapp.dto;
 
+import java.util.List;
+
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import org.springframework.stereotype.Component;
+
+import com.ty.petCart_webapp.entity.Address;
+import com.ty.petCart_webapp.entity.Customer;
+import com.ty.petCart_webapp.entity.Medications;
+import com.ty.petCart_webapp.entity.User;
 
 @Component
 public class PetsDto {
@@ -11,8 +22,11 @@ public class PetsDto {
 	private String p_lifespan;
 	private double p_cost;
 	private String p_address;
-	private int user_id;
-	private long phone;
+	private String status;
+	private User user;
+	private Customer customer;
+	private List<Medications> medications;
+	
 	public int getP_id() {
 		return p_id;
 	}
@@ -49,18 +63,34 @@ public class PetsDto {
 	public void setP_address(String p_address) {
 		this.p_address = p_address;
 	}
-	public int getUser_id() {
-		return user_id;
+
+	public User getUser() {
+		return user;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public long getPhone() {
-		return phone;
+
+	public String getStatus() {
+		return status;
 	}
-	public void setPhone(long phone) {
-		this.phone = phone;
+	public void setStatus(String status) {
+		this.status = status;
 	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public List<Medications> getMedications() {
+		return medications;
+	}
+	public void setMedications(List<Medications> medications) {
+		this.medications = medications;
+	}
+	
+	
 	
 	
 }

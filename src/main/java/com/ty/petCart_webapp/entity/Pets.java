@@ -1,25 +1,46 @@
 package com.ty.petCart_webapp.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Pets {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int p_id;
+	@NotNull(message = "pet category should not be null")
+	@NotBlank(message = "pet category should not be blank")
 	private String p_category;
+	@NotNull(message = "pet breed should not be null")
+	@NotBlank(message = "pet breed should not be blank")
 	private String p_breed;
+	@NotNull(message = "pet lifespan should not be null")
+	@NotBlank(message = "pet lifespan should not be blank")
 	private String p_lifespan;
+	@Min(value = 0)
 	private double p_cost;
+	@NotNull(message = "pet address should not be null")
+	@NotBlank(message = "pet address should not be blank")
 	private String p_address;
-	private int user_id;
-	private long phone;
-	@OneToOne
-	private Address address;
+	@NotNull(message = "pet status should not be null")
+	@NotBlank(message = "pet status should not be blank")
+	private String status;
+	@ManyToOne
+	private User user;
+	@ManyToOne
+	private Customer customer;
+	@ManyToMany
+	private List<Medications>  medications;
 
 	public int getP_id() {
 		return p_id;
@@ -69,28 +90,41 @@ public class Pets {
 		this.p_address = p_address;
 	}
 
-	public int getUser_id() {
-		return user_id;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public long getPhone() {
-		return phone;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setPhone(long phone) {
-		this.phone = phone;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public Address getAddress() {
-		return address;
+	
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
+	public List<Medications> getMedications() {
+		return medications;
+	}
+
+	public void setMedications(List<Medications> medications) {
+		this.medications = medications;
+	}
+
+	
+	
+	
 }
